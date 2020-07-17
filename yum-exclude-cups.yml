@@ -6,5 +6,5 @@
           
   - name: add the exclude line to the yum-cron.conf
     lineinfile:
-      path: /etc/yum.conf/
+      path: /etc/yum.conf
       line: exclude = cups*
