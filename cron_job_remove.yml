@@ -1,7 +1,7 @@
 ---
 - hosts: ansible_hosts
   become: yes
-  task: 
+  tasks: 
   -  name: Removing cronjob
      crond: 
        name: "CUPS CRONJOB THAT DELETES PRINT JOBS OLDER THAN 120 DAYS"
