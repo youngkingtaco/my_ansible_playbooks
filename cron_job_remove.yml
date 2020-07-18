@@ -4,5 +4,5 @@
   tasks: 
   -  name: Removing cronjob
      cron: 
-       name: "CUPS CRONJOB THAT DELETES PRINT JOBS OLDER THAN 120 DAYS"
+       name: "Check for disabled printer"
        state: absent
