@@ -1,0 +1,20 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  tasks:
+
+  - name: deploy the script that purge old print jobs across all our remote servers
+    copy: 
+      src: /usr/scripts/clean_cups_cache.sh
+      dest: /usr/scripts
+      owner: root 
+      group: root  
+      mode: '0770'
+  
+  - name: set up a cronjob that runs every hour to check for old print jobs that needs to be deleted
+    cron: 
+      name: CUPS CRONJOB THAT DELETES PRINT JOBS OLDER THAN 120 DAYS
+      weekday: "1-5"
+      minute: "0"
+      hour: "*"
+      job: "/usr/scripts/clean_cups_cache.sh"
