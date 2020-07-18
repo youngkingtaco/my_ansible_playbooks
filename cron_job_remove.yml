@@ -3,6 +3,6 @@
   become: yes
   tasks: 
   -  name: Removing cronjob
-     crond: 
+     cron: 
        name: "CUPS CRONJOB THAT DELETES PRINT JOBS OLDER THAN 120 DAYS"
        state: absent
