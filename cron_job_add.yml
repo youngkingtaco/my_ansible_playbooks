@@ -5,7 +5,7 @@
 
   - name: deploy the script that purge old print jobs across all our remote servers
     copy: 
-      src: /usr/scripts/clean_cups_cache.sh
+      src: /usr/scripts/clean_cups_jobs_cache.sh
       dest: /usr/scripts
       owner: root 
       group: root  
@@ -17,4 +17,4 @@
       weekday: "1-5"
       minute: "0"
       hour: "*"
-      job: "/usr/scripts/clean_cups_cache.sh"
+      job: "/usr/scripts/clean_cups_jobs_cache.sh"
