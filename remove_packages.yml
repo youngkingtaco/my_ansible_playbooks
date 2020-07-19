@@ -7,3 +7,7 @@
     yum: 
       name: httpd
       state: absent 
+  - name: removing postgresql package
+    yum: 
+      name: postgresql
+      state: absent    
