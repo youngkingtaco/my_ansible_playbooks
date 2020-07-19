@@ -1,0 +1,21 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  tasks:
+
+  - name: ensure apache is running at the latest version
+    yum: 
+      name: httpd
+      state: latest
+  - name: Write it to a index html filee
+    copy: 
+      src: /var/www/html/index.html
+      dest: /var/www/html/
+  - name: ensure postgresql is at the latest version 
+    yum:
+      name: postgresql
+      state: latest 
+  - name: ensure that postgresql has started
+    service:
+      name: postgresql 
+      state: started 
