@@ -1,4 +1,4 @@
----
+-- ##This playbook will install httpd, and postgresql packages across our ansible_hosts inventory-
 - hosts: ansible_hosts
   become: yes
   tasks:
@@ -7,6 +7,10 @@
     yum: 
       name: httpd
       state: latest
+  - name: make sure that apache is enabled 
+    service: 
+      name: httpd
+      enabled: true  
   - name: Write it to a index html filee
     copy: 
       src: /var/www/html/index.html
@@ -18,4 +22,5 @@
   - name: ensure that postgresql has started
     service:
       name: postgresql 
-      state: started 
+      state: started
+      enabled: true  
