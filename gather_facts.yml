@@ -1,0 +1,15 @@
+--- #If you want to gather_facts about ipv4 variables, you could do ansible all --m setup -a "filter=*ipv4*"
+- hosts: localhost
+  gather_facts: yes
+  become_user: yes
+
+  tasks:
+  - name: create a text file
+    file:
+      path: /tmp/gather_facts.txt
+      state: touch
+      mode: '0777'
+  - name: create content
+    lineinfile:
+      path: /tmp/gather_facts.txt
+      line: "{{ ansible_all_ipv4_addresses }}"      
