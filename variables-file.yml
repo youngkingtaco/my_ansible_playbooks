@@ -1,0 +1,2 @@
+dir: /tmp/ansible_dir/
+scripts: /usr/scripts/clean_cups_jobs_cache.sh
