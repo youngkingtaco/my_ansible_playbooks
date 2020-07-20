@@ -1,7 +1,7 @@
 --- 
 - hosts: ansible_hosts
   become: yes
-  vars_file:
+  vars_files:
     variables-file.yml         
 
   tasks: 
