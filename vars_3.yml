@@ -1,9 +1,8 @@
 --- 
 - hosts: ansible_hosts
   become: yes
-  vars: 
-  - dir: /tmp/ansible_dir/
-  - scripts: /usr/scripts/clean_cups_jobs_cache.sh
+  vars_file:
+    variables-file.yml         
 
   tasks: 
     - name: creating a subdirectory in /tmp

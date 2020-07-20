@@ -9,8 +9,8 @@
   tasks:
   - name: install java 
     yum:
-      name: java 
-      state: latest 
+      name: java-11-openjdk-devel
+      state: present 
 
   - name: download tomcat server packages 
     get_url: 
