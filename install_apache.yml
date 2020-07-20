@@ -1,0 +1,23 @@
+--- ##handlers example
+- hosts: ansible_hosts
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: install apache
+    yum: 
+      name: httpd
+      state: latest
+  
+  - name: make sure httpd server is enabled
+    service: 
+      name: httpd
+      state: started
+    notify: httpd service     
+  
+  handlers:  
+  - name: replace index.html 
+    copy: 
+      dest: /var/www/html/index.html
+      content: "Hi I am host {{ ansible_hostname }} and I run the linux kernel {{ ansible_kernel }}\n"
+    listen: httpd service
