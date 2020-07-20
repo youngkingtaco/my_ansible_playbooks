@@ -1,0 +1,20 @@
+--- 
+- hosts: ansible_hosts
+  become: yes
+  vars: 
+  - dir: /tmp/ansible_dir/
+  - scripts: /usr/scripts/clean_cups_jobs_cache.sh
+
+  tasks: 
+    - name: creating a subdirectory in /tmp
+      file: 
+        path: "{{ dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: copy scripts from ansible master server 
+      copy: 
+        src: "{{ scripts }}"
+        dest: "{{ dir }}"
+        
+          
