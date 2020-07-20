@@ -1,0 +1,15 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  gather_facts: yes
+
+  tasks:
+  - name: remove httpd apache
+    yum: 
+     name: httpd
+     state: absent
+  
+  - name: delete index.html 
+    file: 
+      path: /var/www/html/index.html
+      state: absent    
