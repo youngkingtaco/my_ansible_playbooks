@@ -1,6 +1,8 @@
 ---
 - hosts: localhost
+  become: yes
   tasks: 
+
     - name: create working directory
       file: 
         name: "{{ working_dir }}"
@@ -13,7 +15,7 @@
         line: "{{ service_list }}"
     
     - name: view share property 
-      command: ls -la "{{ share_paths['nfs'] }}"
+      command: ls -la "{{ share_paths[ 'nfs' ] }}"
       register: cmd_output 
     
     - name: write command module output to file 
