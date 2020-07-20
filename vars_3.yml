@@ -1,0 +1,19 @@
+--- 
+- hosts: ansible_hosts
+  become: yes
+  vars_files:
+    variables-file.yml         
+
+  tasks: 
+    - name: creating a subdirectory in /tmp
+      file: 
+        path: "{{ dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: copy scripts from ansible master server 
+      copy: 
+        src: "{{ scripts }}"
+        dest: "{{ dir }}"
+        
+          
