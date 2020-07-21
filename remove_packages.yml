@@ -5,9 +5,8 @@
 
   - name: removing httpd package install
     yum: 
-      name: httpd
-      state: absent 
-  - name: removing postgresql package
-    yum: 
-      name: postgresql
-      state: absent    
+      name: "{{ items }}" 
+      state: absent
+    loop:
+    - httpd
+    - postgresql  
