@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: yes
+  vars: 
+  - dir: /tmp/ansible_1dir/
+  
+  tasks:
+  - name: creating directories
+    file:
+      path: "{{ dir }}{{ item }}"
+      state: directory
+    with_items:
+    - dir1
+    - dir2
+    - dir3      
