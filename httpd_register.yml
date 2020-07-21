@@ -1,0 +1,26 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: yes
+  tasks:
+  
+  - name: install apache
+    yum: 
+     name: httpd
+     state: latest
+    notify: httpd notify
+
+  handlers:
+  - name: replace index.html
+    copy: 
+      dest: /var/www/html/index.html
+      content: "Hi I am host {{ item }} and I run the linux kernel {{ item }}\n"
+    with_items:
+    - ansible_hostname
+    - ansible_kernel      
+    register: index_file
+    listen: httpd notify
+   
+  - name: output index.html 
+    debug: 
+      msg: "{{ index_file }}" 
