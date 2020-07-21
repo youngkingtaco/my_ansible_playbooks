@@ -1,4 +1,4 @@
----
+---##example of using with gather_facts - to gather variables from the setup module
 - hosts: localhost
   become: yes
   gather_facts: yes

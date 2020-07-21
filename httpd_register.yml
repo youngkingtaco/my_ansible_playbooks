@@ -8,9 +8,7 @@
     yum: 
      name: httpd
      state: latest
-    notify: httpd notify
 
-  handlers:
   - name: replace index.html
     copy: 
       dest: /var/www/html/index.html
@@ -19,8 +17,7 @@
     - ansible_hostname
     - ansible_kernel      
     register: index_file
-    listen: httpd notify
-   
+
   - name: output index.html 
     debug: 
       msg: "{{ index_file }}" 
