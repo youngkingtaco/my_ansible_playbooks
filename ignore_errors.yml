@@ -1,0 +1,14 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: install httpd package
+    yum: 
+     name: http
+     state: latest
+    ignore_errors: True
+     
+  - name: install httpd package
+    yum: 
+     name: httpd
+     state: latest    
