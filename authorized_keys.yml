@@ -1,0 +1,15 @@
+---
+- hosts: ansible_host
+  tasks:
+  - name: create user xderek in our ansible_host inventory list
+    user:
+      name: "{{ item }}"
+      state: present
+    with_items:
+      - xderek
+      - xgabriel  
+  - name: set authorized public keys for hugo
+    authorized_key:
+      user: xderek 
+      state: present
+      key: "{{ lookup('file', '/home/xderek/.ssh/id_rsa.pub') }}"
