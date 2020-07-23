@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  
+  - name: push the script only if the OS is redhat
+    copy:
+      src: /usr/scripts/resize_dynamic_files.sh
+      dest: /usr/scripts
+      owner: root
+      group: root
+      mode: '0755'
