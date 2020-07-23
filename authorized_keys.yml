@@ -5,11 +5,16 @@
     user:
       name: "{{ item }}"
       state: present
+      generate_ssh_key: yes
+      shell: /bin/bash
     with_items:
       - xderek
       - xgabriel  
   - name: set authorized public keys for hugo
     authorized_key:
-      user: xderek 
+      user: "{{ item }}" 
       state: present
-      key: "{{ lookup('file', '/home/xderek/.ssh/id_rsa.pub') }}"
+      key: "{{ lookup('file', '/home/item/.ssh/id_rsa.pub') }}"
+    with_items:
+      - xderek
+      - xgabriel   
