@@ -1,0 +1,18 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: check if exists or not
+    stat:
+      path: /data/PHANTOM_LOGS
+    register: PHANTOMS
+
+  - name: review the result
+    debug:
+      msg: "{{ PHANTOMS }}" 
+  - name: create PHANTOMS log directory if it doesn't exist in /data directory
+    file:
+      path: /data/PHANTOMS_LOGS
+      state: directory
+      mode: '0755'
+    when: PHANTOMS.stat.exists == false
