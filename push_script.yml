@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: ansible_hosts 
   become: yes
   tasks:
   
@@ -10,3 +10,4 @@
       owner: root
       group: root
       mode: '0755'
+    when: ansible_os_family == "RedHat" 
