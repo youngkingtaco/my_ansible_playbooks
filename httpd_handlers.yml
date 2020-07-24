@@ -16,7 +16,6 @@
       state: started
     listen: restart httpd       
 
-  - name: 
-    lineinfile: 
-      path: /var/www/html/index.html
-      line: "Hello, This is Hugo"          
+  - name: adding a new message to index.html
+    shell: echo "Hi! this is hugo" > /var/www/html/index.html
+ 
