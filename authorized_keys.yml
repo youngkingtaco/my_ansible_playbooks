@@ -1,15 +1,15 @@
 ---
 - hosts: ansible_host
   tasks:
-  - name: create user xderek in our ansible_host inventory list
-    user:
-      name: "{{ item }}"
-      state: present
-      generate_ssh_key: yes
-      shell: /bin/bash
-    with_items:
-      - xderek
-      - xgabriel  
+# - name: create user xderek in our ansible_host inventory list
+#   user:
+#     name: "{{ item }}"
+#     state: present
+#     generate_ssh_key: yes
+ #    shell: /bin/bash
+ #  with_items:
+ #   - xderek
+ #   - xgabriel  
   - name: set authorized public keys for hugo
     authorized_key:
       user: "{{ item }}" 
