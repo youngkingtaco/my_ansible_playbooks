@@ -1,0 +1,17 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  gather_facts: yes
+  vars:
+  - directory: /home/ansible/working
+  tasks:
+  - block:
+    - name: finding files in /home/ansible/working
+      command: "ls {{ directory }}"
+      register: list_out
+    rescue: 
+    - debug: 
+      msg: "the given path: /home/ansible/working is not a valid path"
+    always: 
+    - finally:
+      msg: "This will always execute"    
