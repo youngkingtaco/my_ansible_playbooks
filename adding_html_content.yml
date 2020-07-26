@@ -1,3 +1,4 @@
+### when you run the playbook, make sure you run it including --ask-vault-pass
 ---
 - hosts: ansible_hosts
   become: yes
