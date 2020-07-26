@@ -1,0 +1,11 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  tasks:
+
+  - name: cloning my git repo to my remote hosts
+    git: 
+      repo: git@github.com:youngkingtaco/Test_newrepo.git
+      dest: /etc/ansible/test_repo
+      
+      
