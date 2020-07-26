@@ -1,0 +1,21 @@
+---
+- hosts: ansible_hosts 
+  become: yes
+  tasks:
+  - name: adding a new cronjob to the remote hosts
+    debug:
+      msg: "Adding the following script /usr/bin/user_scripts.sh"
+  - name: push the script out to /usr/scripts/
+    copy:
+      src: /usr/scripts/user_scripts.sh
+      dest: /usr/scripts/
+  - name: setting up the cronjob 
+    debug:
+      msg: "cronjob will be running from monday through friday at 4:00 pm"
+  - name:
+    cron:
+      name: user scripts cronjob
+      minute: "0"
+      hour: "16"
+      weekday: "1-5"
+      job: "/usr/script/user_scripts.sh"
