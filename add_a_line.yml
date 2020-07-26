@@ -1,0 +1,11 @@
+## add a line if that line doesn't exist in the path that you provided
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: add a line if it doesn't exist 
+    lineinfile:
+      path: "/tmp/users.txt"
+      line: "html_directory = no"
+      state: present
+      backup: yes
