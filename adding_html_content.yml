@@ -1,0 +1,20 @@
+### when you run the playbook, make sure you run it including --ask-vault-pass
+---
+- hosts: ansible_hosts
+  become: yes
+  vars_files:
+    - vars_file2.yml
+  tasks:
+  - name: install httpd package
+    yum:
+      name: httpd
+      state: latest
+  - name: enabling httpd service
+    service:
+      name: httpd
+      state: started
+
+  - name: adding content to the index.html file
+    copy:
+      dest: /var/www/html/index.html
+      content: "{{ vars_content }}"
