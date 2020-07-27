@@ -1,0 +1,11 @@
+##it will delete a line in /tmp/users.txt. it will delete Hugothesnapper,co
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: delete a line 
+    lineinfile: 
+      path: /tmp/users.txt
+      regexp: '^Hugothesnapper,co'
+      state: absent
+      backup: yes
