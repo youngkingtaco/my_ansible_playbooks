@@ -1,0 +1,15 @@
+##insert a line before a specific line
+---
+- hosts: localhost
+  become: yes
+  tasks:
+  - name: insert a  new line before html_directory file
+    lineinfile: 
+      path: /tmp/users.txt
+      #it will search for the line
+      regexp: '^html_directory = no'
+      insertbefore: 'html_directory'
+      #the line to add
+      line: "Hugothesnapper,co"
+      state: present
+      backup: yes
