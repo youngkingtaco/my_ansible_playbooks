@@ -3,13 +3,13 @@
 - hosts: localhost
   become: yes
   vars:
-  - /etc/httpd/conf/
+  - dir: /etc/httpd/conf/ 
   tasks: 
   - name: commenting a line in /etc/httpd/conf/httpd.conf
     lineinfile:
       path: "{{ dir }}/httpd.conf"
       #the string to search for comment 
-      regexp: '(^EnableSendfile)'
+      regexp: '(^EnableMMAP and EnableSendfile: On systems that support it,)'
       #commentoutthisline
       line: '# \1'
       state: present
