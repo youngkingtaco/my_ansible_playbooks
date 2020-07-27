@@ -1,4 +1,4 @@
-##commenting out a line using ansible
+##uncomment out a line using ansible
 ---
 - hosts: localhost
   become: yes
