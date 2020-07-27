@@ -1,0 +1,14 @@
+##commenting out a line using ansible
+---
+- hosts: localhost
+  become: yes
+  vars:
+  - dir: /etc/httpd/conf/ 
+  tasks: 
+  - name: commenting a line in /etc/httpd/conf/httpd.conf
+    lineinfile:
+      dest: /tmp/users.txt
+      #the string to search for comment 
+      regexp: '#html_directory = yes'
+      #uncommentoutthisline
+      line: 'html_directory = yes'
