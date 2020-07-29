@@ -1,0 +1,21 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  tasks:
+  - name: install apache
+    yum: 
+      name: httpd
+      state: latest
+    listen: start_httpd   
+  
+  - name: push out script to ansible01 host 
+    copy:
+      src: /usr/scripts/user_scripts.sh
+      dest: /usr/scripts/
+    delegate_to: 10.0.3.128
+  
+  handlers:
+  - name: starting httpd service
+    service:
+      name: httpd 
+      state: started  
