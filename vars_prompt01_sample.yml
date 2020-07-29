@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  become: yes
+  vars:
+    dir: /tmp/ansible_dir/
+    text_file: user_scripts_count.sh
+  vars_prompt:
+  - name: user_name
+    prompt: "Enter your username"
+    private: false
+   
+  - name: password
+    prompt: "Enter your password" 
+    private: yes 
+  gather_facts: yes
+  tasks:
+    - name: debug message module
+      debug:
+        msg: "This is your {{ user_name }} and {{ password }}"

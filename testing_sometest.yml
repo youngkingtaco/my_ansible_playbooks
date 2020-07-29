@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: create directory
+    file: 
+      path: /tmp/ansible12_dir/
+      state: directory
+      mode: '0777'
+      owner: root
+      group: root
+    register: directory_status
+  
+    #  - name: display content
+    #debug:
+    # msg: "{{ directory_status }}"
+  - name: install httpd
+    yum: 
+      name: httpd
+      state: latest
+    when: directory_status.changed == false
+    notify: start_httpd 
+
+  handlers:
+  - name: enable httpd service
+    service: name=httpd state=started 
+    listen: start_httpd
