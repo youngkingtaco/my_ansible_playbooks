@@ -1,0 +1,37 @@
+---
+- hosts: ansible_hosts
+  become: yes
+  tasks:
+  - name: installing apache 
+    yum: 
+      name: httpd
+      state: latest
+    listen: enable_port  
+
+  - name: configure apache webserver
+    template: 
+      src: /etc/ansible/playbooks/templates/httpd.j2
+      dest: /etc/httpd/conf/httpd.conf 
+  - debug:
+      msg: "starting HTTPD service on my remote hosts"
+  - service:
+      name: httpd
+      state: started
+    ignore_errors: true   
+  
+  - debug:
+      msg: "Enabling Port 80 HTTP only if apache was installed"
+  handlers:
+  - firewalld:
+      service: httpd
+      permanent: yes 
+      state: enabled
+    notify: enable_port
+  
+  - debug: 
+      msg: "adding content to the index.html file"
+  
+  - copy: 
+      dest: /var/www/html/index.html
+      content: "This is {{ ansible_hostname }} running on {{ ansible_distribution }}
+      mode: '0755'
