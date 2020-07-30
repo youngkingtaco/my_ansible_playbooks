@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: yes
+  vars:
+  - env: staging
+  tasks:
+  - name: using my template module
+    template:
+      src: /etc/ansible/playbooks/templates/my_app.conf.j2
+      dest: /tmp/ansible_example.cfg
+      mode: '0755'
