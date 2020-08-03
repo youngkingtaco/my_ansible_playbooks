@@ -40,7 +40,7 @@ ServerRoot "/etc/httpd"
 # Change this to Listen on specific IP addresses as shown below to 
 # prevent Apache from glomming onto all bound IP addresses.
 #
-Listen "{{ ansible_all_ipv4_addresses }}":80
+Listen "{{ ansible_ipv4 }}":80
 #Listen 80
 
 #
