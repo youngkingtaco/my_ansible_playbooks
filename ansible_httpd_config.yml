@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: insert a line before in apache config file
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '#Listen 12.34.56.78:80'
+      insertbefore: '#Listen'
+      line: "{{ ansible_default_ipv4.address }}:80"
+      state: present
+      backup: yes
+  - name: comment out line listen 80
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regex: 'Listen 80'
+      line: '# Listen 80'
+      state: present
+      backup: yes
